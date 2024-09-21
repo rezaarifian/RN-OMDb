@@ -18,7 +18,6 @@ export function useHomeViewModel(navigation: INavigation) {
   }, []);
 
   const handleOnPress = (movId: string) => {
-    console.log('movie id', movId);
     navigation.push('MovieDetails', {movId});
   };
 

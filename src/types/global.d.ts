@@ -36,4 +36,5 @@ type MovieDetailProps = {
   BoxOffice: string;
   Production: string;
   Website: string;
+  Response?: string;
 };

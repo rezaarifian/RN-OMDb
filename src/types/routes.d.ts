@@ -5,5 +5,6 @@ type RootStackParamList = {
   Favorite: undefined;
   MovieDetails: {
     movId: string;
+    source?: string;
   };
 };

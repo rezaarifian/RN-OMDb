@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Image, View, Text, ScrollView} from 'react-native';
+import {Image, View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
@@ -17,9 +17,9 @@ type Props = {
 
 const MovieDetailsPage: React.FC<Props> = ({navigation, route}) => {
   const {params} = route || {};
-  const {movId} = params || {};
+  const {movId, source} = params || {};
 
-  const {data} = useMovieDetailsViewModel(movId);
+  const {data, handleAddToFavorite} = useMovieDetailsViewModel(movId);
 
   useEffect(() => {
     navigation.setOptions({
@@ -33,7 +33,9 @@ const MovieDetailsPage: React.FC<Props> = ({navigation, route}) => {
   return (
     <ScrollView style={styles.container}>
       {/* Movie Poster */}
-      <Image source={{uri: data?.Poster}} style={styles.poster} />
+      {data?.Poster && (
+        <Image source={{uri: data?.Poster}} style={styles.poster} />
+      )}
 
       {/* Movie Title and Year */}
       <View style={styles.infoContainer}>
@@ -41,6 +43,14 @@ const MovieDetailsPage: React.FC<Props> = ({navigation, route}) => {
         <Text style={styles.year}>Released: {data?.Year}</Text>
         <Text style={styles.genre}>{data?.Genre}</Text>
       </View>
+
+      {source !== 'favorite' && (
+        <TouchableOpacity
+          style={styles.favoriteButton}
+          onPress={() => handleAddToFavorite(data)}>
+          <Text style={styles.favoriteButtonText}>Add to Favorite</Text>
+        </TouchableOpacity>
+      )}
 
       {/* Movie Plot */}
       <View style={styles.section}>

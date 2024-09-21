@@ -45,6 +45,19 @@ const styles = StyleSheet.create({
     fontSize: scale(14),
     marginBottom: scale(5),
   },
+  favoriteButton: {
+    backgroundColor: Colors.PRIMARY_01,
+    paddingVertical: scale(10),
+    paddingHorizontal: scale(20),
+    borderRadius: scale(5),
+    marginBottom: scale(20),
+    alignItems: 'center',
+  },
+  favoriteButtonText: {
+    color: Colors.WHITE,
+    fontSize: scale(16),
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;
